@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EVCA — Digital Marketing Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --wine: #9B5B5B;
+    --wine-dark: #6B3A3A;
+    --wine-light: #C48080;
+    --wine-pale: #F5ECEC;
+    --cream: #FAF7F4;
+    --dark: #1A1010;
+    --mid: #4A2E2E;
+    --text-muted: #8B6060;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CURSOR */
+  .cursor {
+    position: fixed;
+    width: 12px; height: 12px;
+    background: var(--wine);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 40px; height: 40px;
+    border: 1px solid var(--wine-light);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out, width 0.3s, height 0.3s;
+  }
+  .cursor.hovering { width: 20px; height: 20px; background: var(--wine-dark); }
+  .cursor-ring.hovering { width: 60px; height: 60px; border-color: var(--wine); }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    mix-blend-mode: multiply;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.4rem;
+    color: var(--wine-dark);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--wine-dark);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 2px;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 1px;
+    background: var(--wine);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--wine-pale);
+    display: flex;
+    align-items: flex-end;
+    padding: 8rem 3rem 5rem 3rem;
+    position: relative;
+  }
+
+  .hero-right {
+    background: var(--wine-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-right::before {
+    content: 'EVCA';
+    position: absolute;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 22vw;
+    color: rgba(255,255,255,0.04);
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+
+  .hero-tagline-block { position: relative; }
+
+  .hero-pretitle {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--wine);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-pretitle::before {
+    content: '';
+    display: inline-block;
+    width: 30px; height: 1px;
+    background: var(--wine);
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.0;
+    color: var(--wine-dark);
+    letter-spacing: -0.03em;
+    margin-bottom: 2rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--wine);
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 380px;
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--wine-dark);
+    color: white;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: background 0.3s, gap 0.3s;
+  }
+  .hero-cta:hover { background: var(--wine); gap: 1.25rem; }
+  .hero-cta span { font-size: 1.1em; }
+
+  .hero-logo-display {
+    text-align: center;
+    z-index: 1;
+  }
+  .hero-logo-big {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 8vw, 8rem);
+    font-weight: 900;
+    color: white;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    animation: float 4s ease-in-out infinite;
+  }
+  .hero-logo-big span { color: var(--wine-light); font-style: italic; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .hero-agency-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-top: 1rem;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    right: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+    animation: scrollAnim 2s ease-in-out infinite;
+  }
+  @keyframes scrollAnim {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* NUMBERS STRIP */
+  .numbers-strip {
+    background: var(--wine-dark);
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  .number-item { text-align: center; }
+  .number-big {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: white;
+    line-height: 1;
+  }
+  .number-big span { color: var(--wine-light); }
+  .number-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-top: 0.4rem;
+  }
+
+  /* SECTION BASE */
+  section { padding: 7rem 3rem; }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--wine);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 20px; height: 1px;
+    background: var(--wine);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--wine-dark);
+  }
+  .section-title em { font-style: italic; color: var(--wine); }
+
+  /* SERVICES */
+  .services { background: white; }
+
+  .services-grid {
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid #EEE5E5;
+  }
+
+  .service-card {
+    padding: 3rem 2.5rem;
+    border-right: 1px solid #EEE5E5;
+    border-bottom: 1px solid #EEE5E5;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s;
+    cursor: default;
+  }
+  .service-card:nth-child(3n) { border-right: none; }
+  .service-card:nth-last-child(-n+3) { border-bottom: none; }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--wine-pale);
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+  }
+  .service-card:hover::before { transform: translateY(0); }
+  .service-card > * { position: relative; z-index: 1; }
+
+  .service-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    color: var(--wine-light);
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+  .service-icon {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    display: block;
+    filter: grayscale(0.3);
+  }
+  .service-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--wine-dark);
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+  .service-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* HOW WE WORK */
+  .how { background: var(--cream); }
+
+  .how-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 6rem;
+    align-items: start;
+    margin-top: 4rem;
+  }
+
+  .how-steps { display: flex; flex-direction: column; gap: 0; }
+
+  .step {
+    display: flex;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid #EEE5E5;
+    position: relative;
+    cursor: default;
+  }
+  .step:first-child { padding-top: 0; }
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: #EEE5E5;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 60px;
+    transition: color 0.3s;
+  }
+  .step:hover .step-num { color: var(--wine-light); }
+  .step-content {}
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--wine-dark);
+    margin-bottom: 0.5rem;
+  }
+  .step-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .how-visual {
+    position: sticky;
+    top: 8rem;
+    background: var(--wine-dark);
+    padding: 4rem 3rem;
+    aspect-ratio: 3/4;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+  .how-visual::before {
+    content: 'Baix\AValles';
+    white-space: pre;
+    position: absolute;
+    top: 2rem; right: -1rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.05);
+    line-height: 1.1;
+    text-align: right;
+  }
+  .how-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-style: italic;
+    color: white;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .how-quote::before {
+    content: '"';
+    position: absolute;
+    top: -2rem; left: -0.5rem;
+    font-size: 5rem;
+    color: rgba(255,255,255,0.06);
+    font-family: 'Playfair Display', serif;
+  }
+  .how-location {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--wine-light);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* ABOUT */
+  .about { background: var(--wine-pale); }
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+  .about-text { font-size: 1.1rem; color: var(--mid); line-height: 1.8; font-weight: 300; }
+  .about-text p { margin-bottom: 1.5rem; }
+  .about-text p:last-child { margin-bottom: 0; }
+  .about-text strong { color: var(--wine-dark); font-weight: 500; }
+
+  .about-cards { display: flex; flex-direction: column; gap: 1.5rem; }
+  .about-card {
+    background: white;
+    padding: 2rem;
+    border-left: 3px solid var(--wine);
+  }
+  .about-card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--wine-dark);
+    margin-bottom: 0.3rem;
+  }
+  .about-card-role {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--wine-light);
+    margin-bottom: 0.75rem;
+  }
+  .about-card-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag {
+    font-size: 0.72rem;
+    padding: 0.3rem 0.75rem;
+    background: var(--wine-pale);
+    color: var(--wine-dark);
+    border-radius: 0;
+    letter-spacing: 0.05em;
+  }
+
+  /* CONTACT */
+  .contact { background: var(--wine-dark); color: white; }
+  .contact .section-label { color: var(--wine-light); }
+  .contact .section-label::before { background: var(--wine-light); }
+  .contact .section-title { color: white; }
+  .contact .section-title em { color: var(--wine-light); }
+
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    margin-top: 4rem;
+    align-items: start;
+  }
+
+  .contact-text {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 3rem;
+  }
+
+  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-item { display: flex; flex-direction: column; gap: 0.2rem; }
+  .contact-item-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--wine-light);
+  }
+  .contact-item-value {
+    font-size: 1rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 300;
+    transition: color 0.2s;
+  }
+  .contact-item-value:hover { color: var(--wine-light); }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
+  .form-field { display: flex; flex-direction: column; gap: 0.5rem; }
+  .form-field label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--wine-light);
+  }
+  .form-field input,
+  .form-field textarea,
+  .form-field select {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    padding: 0.9rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.3s;
+    border-radius: 0;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .form-field select option { background: var(--wine-dark); color: white; }
+  .form-field input:focus,
+  .form-field textarea:focus,
+  .form-field select:focus {
+    border-color: var(--wine-light);
+  }
+  .form-field textarea { resize: vertical; min-height: 120px; }
+  .form-field input::placeholder,
+  .form-field textarea::placeholder { color: rgba(255,255,255,0.2); }
+
+  .btn-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: white;
+    color: var(--wine-dark);
+    border: none;
+    padding: 1rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s, gap 0.3s;
+    align-self: flex-start;
+  }
+  .btn-submit:hover { background: var(--wine-light); color: white; gap: 1.2rem; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.35);
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+  footer a { color: rgba(255,255,255,0.35); text-decoration: none; }
+  footer a:hover { color: var(--wine-light); }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: -0.01em;
+  }
+
+  /* MARQUEE */
+  .marquee-section {
+    background: var(--wine);
+    padding: 1.2rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-track {
+    display: inline-flex;
+    animation: marquee 20s linear infinite;
+  }
+  .marquee-item {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    padding: 0 2rem;
+  }
+  .marquee-dot {
+    color: rgba(255,255,255,0.3);
+    padding: 0 0.5rem;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ANIMS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1.5rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    section { padding: 5rem 1.5rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { min-height: 50vh; }
+    .hero-left { padding: 7rem 1.5rem 3rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card { border-right: none; }
+    .service-card:nth-last-child(-n+3) { border-bottom: 1px solid #EEE5E5; }
+    .service-card:last-child { border-bottom: none; }
+    .how-inner { grid-template-columns: 1fr; }
+    .how-visual { display: none; }
+    .about-inner { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; }
+    .numbers-strip { flex-wrap: wrap; padding: 2rem 1.5rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">EvCA</a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#como">Cómo</a></li>
+    <li><a href="#nosotras">Nosotras</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tagline-block">
+      <p class="hero-pretitle">Mollet del Vallès · Catalunya · World</p>
+      <h1 class="hero-title">
+        Marketing<br>que <em>realmente</em><br>conecta.
+      </h1>
+      <p class="hero-sub">
+        Creamos presencia digital auténtica para marcas que quieren destacar. 
+        Contenido, webs, automatización con IA y formación. Todo desde el Baix Vallès, para el mundo.
+      </p>
+      <a href="#contacto" class="hero-cta">Hablemos <span>→</span></a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-logo-display">
+      <div class="hero-logo-big">Ev<span>CA</span></div>
+      <p class="hero-agency-label">Digital Marketing Agency</p>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      Scroll
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">Social Media</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Webs & e-commerce</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Automatización IA</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Formaciones</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Eventos de marca</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Creatividad sin límites</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Social Media</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Webs & e-commerce</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Automatización IA</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Formaciones</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Eventos de marca</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Creatividad sin límites</span><span class="marquee-dot">·</span>
+  </div>
+</div>
+
+<!-- NUMBERS -->
+<div class="numbers-strip">
+  <div class="number-item">
+    <div class="number-big">100<span>%</span></div>
+    <div class="number-label">Dedicación</div>
+  </div>
+  <div class="number-item">
+    <div class="number-big">2<span>+</span></div>
+    <div class="number-label">Especialistas</div>
+  </div>
+  <div class="number-item">
+    <div class="number-big">5</div>
+    <div class="number-label">Servicios</div>
+  </div>
+  <div class="number-item">
+    <div class="number-big">∞</div>
+    <div class="number-label">Posibilidades</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="servicios">
+  <div class="reveal">
+    <p class="section-label">Lo que hacemos</p>
+    <h2 class="section-title">Servicios que <em>mueven</em><br>tu negocio.</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-num">01</div>
+      <span class="service-icon">✦</span>
+      <div class="service-name">Contenido en Redes Sociales</div>
+      <p class="service-desc">Creamos contenido estratégico y visual para Instagram, TikTok, LinkedIn y más. Calendarios editoriales, copies y diseño que genera comunidad.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">02</div>
+      <span class="service-icon">◈</span>
+      <div class="service-name">Webs & Mantenimiento</div>
+      <p class="service-desc">Diseñamos y desarrollamos páginas web que convierten. Desde landings hasta e-commerce. Mantenimiento continuo para que nunca falles online.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">03</div>
+      <span class="service-icon">◎</span>
+      <div class="service-name">Automatización con IA</div>
+      <p class="service-desc">Optimizamos tus procesos empresariales usando inteligencia artificial. Menos tiempo en tareas repetitivas, más tiempo en lo que importa.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">04</div>
+      <span class="service-icon">▲</span>
+      <div class="service-name">Formaciones en IA</div>
+      <p class="service-desc">Talleres básicos y presenciales para equipos y emprendedores. Aprende a usar herramientas de IA en el día a día de forma práctica y real.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-num">05</div>
+      <span class="service-icon">◉</span>
+      <div class="service-name">Eventos de Marca</div>
+      <p class="service-desc">Organizamos eventos íntimos y experienciales para marcas que quieren conectar con su comunidad. Nada de megaeventos, sí a momentos memorables.</p>
+    </div>
+    <div class="service-card reveal" style="background: var(--wine-pale);">
+      <div style="height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 1rem; padding: 1rem;">
+        <div style="font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic; color: var(--wine-dark); line-height: 1.4;">
+          ¿Tienes algo en mente diferente?
+        </div>
+        <a href="#contacto" class="hero-cta" style="font-size: 0.78rem; padding: 0.8rem 1.5rem;">Cuéntanos <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="how" id="como">
+  <div class="reveal">
+    <p class="section-label">Cómo trabajamos</p>
+    <h2 class="section-title">Proceso <em>claro</em>,<br>resultados reales.</h2>
+  </div>
+  <div class="how-inner">
+    <div class="how-steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-title">Escucha y diagnóstico</div>
+          <p class="step-desc">Empezamos entendiendo tu negocio, tu marca y tus objetivos. Sin prisas. Una llamada o reunión para conocernos y detectar dónde podemos impactar.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-title">Estrategia personalizada</div>
+          <p class="step-desc">Diseñamos un plan a medida, no templates genéricos. Cada empresa es única y merece una estrategia que lo refleje.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-title">Ejecución y creación</div>
+          <p class="step-desc">Manos a la obra con transparencia total. Reportes regulares, acceso a lo que hacemos y comunicación fluida en todo momento.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <div class="step-title">Análisis y mejora continua</div>
+          <p class="step-desc">Medimos, aprendemos y optimizamos. Lo que funciona se potencia. Lo que no, se cambia. El objetivo siempre es crecer juntos.</p>
+        </div>
+      </div>
+    </div>
+    <div class="how-visual reveal">
+      <p class="how-quote">Trabajamos desde casa, pensamos sin fronteras.</p>
+      <div class="how-location">📍 Mollet del Vallès · Baix Vallès · Catalunya</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="nosotras">
+  <div class="about-inner">
+    <div>
+      <div class="reveal">
+        <p class="section-label">Quiénes somos</p>
+        <h2 class="section-title" style="margin-bottom: 2.5rem;">Dos personas,<br>una <em>visión</em>.</h2>
+      </div>
+      <div class="about-text reveal">
+        <p>EVCA somos una agencia <strong>pequeña, ágil y muy implicada</strong>. Nacimos en el Baix Vallès con la convicción de que el marketing digital bien hecho puede ser el motor de cualquier negocio, grande o pequeño.</p>
+        <p>No tenemos una oficina enorme ni clientes de Fortune 500. Lo que tenemos es <strong>pasión real por lo digital</strong>, ganas de aprender cada día y una manera de trabajar cercana que las agencias grandes no pueden ofrecerte.</p>
+        <p>Trabajamos de forma <strong>remota y flexible</strong>, lo que nos permite ser eficientes y estar siempre disponibles para ti, sin importar donde estés.</p>
+      </div>
+    </div>
+    <div class="about-cards reveal">
+      <div class="about-card">
+        <div class="about-card-name">Co-fundadora</div>
+        <div class="about-card-role">Agencia EVCA</div>
+        <div class="about-card-tags">
+          <span class="tag">Social Media</span>
+          <span class="tag">Creación de contenido</span>
+          <span class="tag">Estrategia digital</span>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-name">Co-fundadora</div>
+        <div class="about-card-role">Agencia EVCA</div>
+        <div class="about-card-tags">
+          <span class="tag">Webs & Desarrollo</span>
+          <span class="tag">Automatización IA</span>
+          <span class="tag">Formación</span>
+        </div>
+      </div>
+      <div class="about-card" style="border-left-color: var(--wine-light); padding: 1.5rem 2rem;">
+        <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; font-style: italic; font-weight: 300;">
+          "Empezamos en local pero pensamos global. Mollet del Vallès es nuestro punto de partida, el mundo es nuestro mercado."
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <div class="reveal">
+    <p class="section-label">Hablemos</p>
+    <h2 class="section-title">¿Lista para dar<br>el <em>siguiente paso</em>?</h2>
+  </div>
+  <div class="contact-inner">
+    <div>
+      <p class="contact-text">
+        No necesitas tenerlo todo claro. Cuéntanos en qué estás, dónde quieres llegar y buscamos juntos el camino. Sin compromiso, sin rollos. Solo una conversación honesta.
+      </p>
+      <div class="contact-info">
+        <div class="contact-item">
+          <span class="contact-item-label">Email</span>
+          <a href="mailto:molletlab@gmail.com" class="contact-item-value">molletlab@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">Ubicación</span>
+          <span class="contact-item-value">Mollet del Vallès, Baix Vallès</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">Disponibilidad</span>
+          <span class="contact-item-value">Lunes a Viernes · 9h–19h</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">Instagram</span>
+          <a href="#" class="contact-item-value">@evca.agency</a>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form reveal">
+      <div class="form-field">
+        <label>Nombre</label>
+        <input type="text" placeholder="Tu nombre o empresa">
+      </div>
+      <div class="form-field">
+        <label>Email</label>
+        <input type="email" placeholder="tu@email.com">
+      </div>
+      <div class="form-field">
+        <label>¿Qué necesitas?</label>
+        <select>
+          <option value="" disabled selected>Selecciona un servicio</option>
+          <option>Contenido en Redes Sociales</option>
+          <option>Web o e-commerce</option>
+          <option>Automatización con IA</option>
+          <option>Formación en IA</option>
+          <option>Eventos de marca</option>
+          <option>Varios / No sé aún</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>Cuéntanos más</label>
+        <textarea placeholder="Explícanos brevemente tu situación o proyecto..."></textarea>
+      </div>
+      <button class="btn-submit" type="button" onclick="handleSubmit()">Enviar mensaje →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">EvCA</div>
+  <span>© 2025 EVCA Digital Marketing Agency · Mollet del Vallès</span>
+  <span>Hecho con ♥ en el Baix Vallès</span>
+</footer>
+
+<script>
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+  setTimeout(() => {
+    ring.style.left = e.clientX + 'px';
+    ring.style.top = e.clientY + 'px';
+  }, 80);
+});
+
+document.querySelectorAll('a, button, .service-card, .step').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.classList.add('hovering');
+    ring.classList.add('hovering');
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.classList.remove('hovering');
+    ring.classList.remove('hovering');
+  });
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+function handleSubmit() {
+  const btn = document.querySelector('.btn-submit');
+  btn.textContent = '✓ Mensaje enviado';
+  btn.style.background = 'var(--wine-light)';
+  btn.style.color = 'white';
+  btn.disabled = true;
+}
+</script>
+</body>
+</html>
