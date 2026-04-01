@@ -918,36 +918,83 @@
         </div>
       </div>
     </div>
-    <div class="contact-form reveal">
-      <div class="form-field">
-        <label>Nombre</label>
-        <input type="text" placeholder="Tu nombre o empresa">
-      </div>
-      <div class="form-field">
-        <label>Email</label>
-        <input type="email" placeholder="tu@email.com">
-      </div>
-      <div class="form-field">
-        <label>¿Qué necesitas?</label>
-        <select>
-          <option value="" disabled selected>Selecciona un servicio</option>
-          <option>Contenido en Redes Sociales</option>
-          <option>Web o e-commerce</option>
-          <option>Automatización con IA</option>
-          <option>Formación en IA</option>
-          <option>Eventos de marca</option>
-          <option>Varios / No sé aún</option>
-        </select>
-      </div>
-      <div class="form-field">
-        <label>Cuéntanos más</label>
-        <textarea placeholder="Explícanos brevemente tu situación o proyecto..."></textarea>
-      </div>
-      <button class="btn-submit" type="button" onclick="handleSubmit()">Enviar mensaje →</button>
-    </div>
-  </div>
-</section>
+   <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Contacto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      padding: 40px;
+    }
+    .form-container {
+      max-width: 500px;
+      margin: auto;
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+    }
+    button {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
 
+<body>
+
+  <div class="form-container">
+    <h1>Contacto</h1>
+
+    <form action="https://formspree.io/f/xykbpjee" method="POST">
+
+      <label for="name">Nombre</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Mensaje</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <!-- Anti‑spam -->
+      <input type="text" name="_gotcha" style="display:none">
+
+      <!-- Opcional: asunto del email -->
+      <input type="hidden" name="_subject" value="Nuevo mensaje desde la web">
+
+      <!-- Opcional: redirección tras envío -->
+      <!-- <input type="hidden" name="_next" value="gracias.html"> -->
+
+      <button type="submit">Enviar</button>
+
+    </form>
+  </div>
+
+</body>
+</html>
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">EvCA</div>
