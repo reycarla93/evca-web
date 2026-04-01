@@ -862,7 +862,7 @@
     </div>
     <div class="about-cards reveal">
       <div class="about-card">
-        <div class="about-card-name">Fundadoras, Carla y Eva</div>
+        <div class="about-card-name">Co-fundadora</div>
         <div class="about-card-role">Agencia EVCA</div>
         <div class="about-card-tags">
           <span class="tag">Social Media</span>
@@ -902,11 +902,11 @@
       <div class="contact-info">
         <div class="contact-item">
           <span class="contact-item-label">Email</span>
-          <a href="mailto:reycarla01@gmail.com" class="contact-item-value">reycarla01@gmail.com</a>
+          <a href="/cdn-cgi/l/email-protection#aac2c5c6cbeacfdcc9cb84cbcdcfc4c9d3" class="contact-item-value"><span class="__cf_email__" data-cfemail="10787f7c7150756673713e7177757e7369">[email&#160;protected]</span></a>
         </div>
         <div class="contact-item">
           <span class="contact-item-label">Ubicación</span>
-          <span class="contact-item-value">Mollet del Vallès,Barcelona</span>
+          <span class="contact-item-value">Mollet del Vallès, Baix Vallès</span>
         </div>
         <div class="contact-item">
           <span class="contact-item-label">Disponibilidad</span>
@@ -918,18 +918,18 @@
         </div>
       </div>
     </div>
-    <div class="contact-form reveal">
+    <form class="contact-form reveal" action="https://formspree.io/f/mojpldky" method="POST">
       <div class="form-field">
         <label>Nombre</label>
-        <input type="text" placeholder="Tu nombre o empresa">
+        <input type="text" name="nombre" placeholder="Tu nombre o empresa" required>
       </div>
       <div class="form-field">
         <label>Email</label>
-        <input type="email" placeholder="tu@email.com">
+        <input type="email" name="email" placeholder="tu@email.com" required>
       </div>
       <div class="form-field">
         <label>¿Qué necesitas?</label>
-        <select>
+        <select name="servicio">
           <option value="" disabled selected>Selecciona un servicio</option>
           <option>Contenido en Redes Sociales</option>
           <option>Web o e-commerce</option>
@@ -941,10 +941,10 @@
       </div>
       <div class="form-field">
         <label>Cuéntanos más</label>
-        <textarea placeholder="Explícanos brevemente tu situación o proyecto..."></textarea>
+        <textarea name="mensaje" placeholder="Explícanos brevemente tu situación o proyecto..." required></textarea>
       </div>
-      <button class="btn-submit" type="button" onclick="handleSubmit()">Enviar mensaje →</button>
-    </div>
+      <button class="btn-submit" type="submit">Enviar mensaje →</button>
+    </form>
   </div>
 </section>
 
@@ -952,10 +952,10 @@
 <footer>
   <div class="footer-logo">EvCA</div>
   <span>© 2025 EVCA Digital Marketing Agency · Mollet del Vallès</span>
- 
+  <span>Hecho con ♥ en el Baix Vallès</span>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursor-ring');
 
@@ -989,13 +989,4 @@ const observer = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-function handleSubmit() {
-  const btn = document.querySelector('.btn-submit');
-  btn.textContent = '✓ Mensaje enviado';
-  btn.style.background = 'var(--wine-light)';
-  btn.style.color = 'white';
-  btn.disabled = true;
-}
-</script>
-</body>
-</html>
+function ha
