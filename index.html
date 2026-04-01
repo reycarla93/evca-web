@@ -975,13 +975,22 @@
 
       <label for="email">Email</label>
       <input type="email" id="email" name="email" required>
-
-      <label for="message">Mensaje</label>
-      <textarea id="message" name="message" rows="5" required></textarea>
-
-      <!-- Anti‑spam -->
-      <input type="text" name="_gotcha" style="display:none">
-
+       <div class="form-field">
+        <label>¿Qué necesitas?</label>
+        <select>
+          <option value="" disabled selected>Selecciona un servicio</option>
+          <option>Contenido en Redes Sociales</option>
+          <option>Web o e-commerce</option>
+          <option>Automatización con IA</option>
+          <option>Formación en IA</option>
+          <option>Eventos de marca</option>
+          <option>Varios / No sé aún</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>Cuéntanos más</label>
+        <textarea placeholder="Explícanos brevemente tu situación o proyecto..."></textarea>
+      </div>
       <!-- Opcional: asunto del email -->
       <input type="hidden" name="_subject" value="Nuevo mensaje desde la web">
 
